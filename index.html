@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hello, Algorithm! 算法训练营 C++ 基础自测。10 道分支、循环、逻辑运算、递归与常用 STL 小题。">
+  <title>C++ 基础自测 · Hello, Algorithm!</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230e7668'/%3E%3Ctext x='32' y='42' font-size='34' text-anchor='middle' fill='white' font-family='monospace'%3E%7B%7D%3C/text%3E%3C/svg%3E">
+  <style>
+    :root{color-scheme:light;--ink:#182a36;--muted:#586c79;--green:#0e7668;--green-dark:#085a50;--line:#dae3e9;--paper:#fff;--bg:#f0f4f7;--amber:#925614;--mono:Consolas,"SFMono-Regular",monospace}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Segoe UI","Microsoft YaHei",system-ui,sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.45}button,a,summary{touch-action:manipulation}button:focus-visible,a:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px solid #d77c16;outline-offset:4px}a{color:var(--green)}[hidden]{display:none!important}
+    .header{background:var(--paper);border-bottom:1px solid var(--line)}.header-inner{max-width:1140px;padding:22px 30px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{display:flex;align-items:center;gap:13px;min-width:0}.logo{flex-shrink:0;font:700 24px var(--mono);background:var(--green);color:white;border-radius:10px;width:45px;height:45px;display:grid;place-items:center}.brand-title{font-size:18px;font-weight:750;line-height:1.3}.brand-meta{font-size:13px;color:var(--muted);margin-top:3px}.header-tag{font:600 14px var(--mono);color:var(--green)}
+    .layout{max-width:1140px;margin:35px auto 0;padding:0 30px;display:grid;grid-template-columns:245px minmax(0,1fr);gap:28px;align-items:start}.sidebar{padding:8px 0}.eyebrow{color:var(--green);font:700 13px var(--mono);letter-spacing:1px}.sidebar h1{font-size:27px;line-height:1.4;margin:10px 0 8px;letter-spacing:-.5px}.muted{color:var(--muted)}.sidebar p{font-size:14px;margin:6px 0}.side-block{margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}.side-title{font-size:14px;font-weight:700;margin-bottom:12px}.side-note{color:var(--muted);font-size:13px!important;line-height:1.7}.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:32px;box-shadow:0 8px 26px #142c4010;min-width:0}.welcome h2{font-size:32px;line-height:1.35;margin:12px 0 14px;letter-spacing:-.7px}.welcome p{margin:0 0 18px;max-width:570px}.code-intro{background:#172d3a;color:#e7f3f3;border-radius:11px;padding:22px;margin:25px 0;overflow:auto;font:15px/1.9 var(--mono)}.code-comment{color:#9cc7b9}.code-word{color:#83e7cb}.info-row{display:flex;gap:28px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:23px;margin-top:22px}.info-value{font-size:23px;font-weight:750;line-height:1.4}.info-label{font-size:13px;color:var(--muted)}.primary,.secondary{border-radius:9px;padding:11px 20px;min-height:46px;font-weight:650;font-size:15px}.primary{background:var(--green);border:1px solid var(--green);color:white}.primary:hover{background:var(--green-dark)}.secondary{color:var(--ink);border:1px solid #c8d5de;background:white}.secondary:hover{background:#f2f7f7}.welcome .primary{margin-top:27px;min-width:170px}.fine{font-size:13px!important;color:var(--muted);margin:14px 0 0!important}.score-guide{font-size:14px;color:var(--muted);margin-top:17px!important}.score-guide strong{color:var(--ink)}
+    .quiz{scroll-margin-top:16px}.quiz-top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;color:var(--muted)}.quiz-top strong{font:700 17px var(--mono);color:var(--green)}.progress{height:5px;background:#e9eff2;border-radius:8px;margin:17px 0 25px;overflow:hidden}.progress-fill{height:100%;background:var(--green);width:0;transition:width .18s}.quiz h2{font-size:23px;line-height:1.55;margin:12px 0 18px;overflow-wrap:anywhere}.question-code{max-width:100%;background:#172d3a;color:#edf6f6;border-radius:10px;padding:20px;overflow:auto;font:15px/1.85 var(--mono);margin:0 0 22px;tab-size:2;white-space:pre}.code-note{font-size:12px;color:var(--muted);margin:-13px 0 20px}.answers{display:grid;gap:11px}.answer{display:flex;gap:12px;align-items:center;text-align:left;border:1px solid #d5e0e6;background:#fff;color:var(--ink);padding:14px;border-radius:9px;width:100%;font-size:16px;line-height:1.6}.answer:hover{background:#f3f8f7;border-color:#96b8b1}.answer[aria-checked="true"]{background:#ecf7f3;border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}.answer-letter{border:1px solid #cbd8df;border-radius:6px;font:600 14px var(--mono);width:30px;height:30px;flex:0 0 30px;display:grid;place-items:center;color:var(--muted)}.answer[aria-checked="true"] .answer-letter{background:var(--green);border-color:var(--green);color:white}.unknown{font-size:14px;color:var(--muted);padding:10px 14px;border-style:dashed}.unknown .answer-letter{width:26px;height:26px;flex-basis:26px}.quiz-actions{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:27px}.quiz-actions .secondary{padding:10px 16px}.hint{color:var(--muted);font-size:13px;margin:16px 0 0}.status{color:var(--amber);font-size:14px;margin-top:12px;min-height:23px}.question-nav{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}.nav-number{border:1px solid #cedbe2;background:white;color:var(--muted);height:36px;border-radius:6px;font:600 14px var(--mono)}.nav-number.done{background:#e0f0eb;color:var(--green);border-color:#b1d4c7}.nav-number.current{background:var(--green);color:white;border-color:var(--green)}
+    .result-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:24px;border-bottom:1px solid var(--line)}.score-big{font:750 58px/1.1 var(--mono);color:var(--green);white-space:nowrap}.score-big small{font-size:21px;color:var(--muted);font-weight:400}.result-label{font-size:13px;color:var(--muted);margin-top:8px}.group-pill{background:#e9f5f1;color:var(--green);padding:5px 12px;border-radius:6px;font-size:14px;font-weight:700}.result h2{font-size:25px;line-height:1.5;margin:24px 0 10px}.recommendation{margin:0;font-size:18px;line-height:1.8}.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:24px 0}.stat{border:1px solid var(--line);border-radius:9px;padding:12px}.stat strong{font:700 24px var(--mono);display:block}.stat span{font-size:13px;color:var(--muted)}.result-actions{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 10px}.review-heading{font-size:18px;margin:32px 0 15px}.review{border-top:1px solid var(--line);padding:16px 0}.review summary{display:flex;justify-content:space-between;gap:12px;align-items:baseline;cursor:pointer;font-size:15px;list-style:none}.review summary::-webkit-details-marker{display:none}.review-title{flex:1}.review-score{font:600 14px var(--mono);white-space:nowrap;color:var(--muted)}.review-score.full{color:var(--green)}.review-score.half{color:var(--amber)}.review summary::before{content:"+";color:var(--green);font:700 18px var(--mono)}.review[open] summary::before{content:"−"}.review-content{margin-top:14px;font-size:14px;color:var(--muted)}.review-content p{margin:8px 0}.review-content strong{color:var(--ink)}.review-content pre{font-size:13px;margin:12px 0}.footer{max-width:1140px;margin:32px auto;padding:0 30px 22px;font-size:12px;color:var(--muted);display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}dialog{border:1px solid var(--line);border-radius:14px;padding:26px;max-width:520px;width:calc(100% - 36px);color:var(--ink)}dialog::backdrop{background:#172d3a66}dialog h3{margin:0 0 12px;font-size:20px}.dialog-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+    @media(max-width:820px){.layout{grid-template-columns:200px minmax(0,1fr);gap:20px;padding:0 22px}.card{padding:25px}.sidebar h1{font-size:24px}.welcome h2{font-size:28px}.header-inner{padding:18px 22px}}
+    @media(max-width:640px){.result-head{flex-wrap:wrap}.header-inner{padding:16px 18px}.brand-title{font-size:16px}.brand-meta{font-size:12px}.header-tag{display:none}.logo{width:38px;height:38px;font-size:22px}.layout{display:block;margin-top:20px;padding:0 16px}.sidebar{padding:0 3px 18px}.sidebar h1{font-size:23px;margin:4px 0}.sidebar>p{margin:4px 0}.sidebar .eyebrow{display:none}.side-block{border:0;padding:0;margin-top:14px}.question-nav{grid-template-columns:repeat(5,1fr);gap:6px;margin-top:8px}.nav-number{font-size:14px;height:44px}.side-title{margin-bottom:5px}.card{padding:22px 19px;border-radius:13px}.welcome h2{font-size:27px}.quiz h2{font-size:21px}.answer{padding:12px 10px;font-size:16px}.code-intro{font-size:13px;padding:18px}.question-code{font-size:14px;padding:16px}.score-big{font-size:49px}.result h2{font-size:23px}.recommendation{font-size:17px}.stat{padding:10px}.stat span{font-size:12px}.info-row{gap:23px}.footer{padding:0 19px 16px;margin-top:24px}.quiz-actions{gap:8px}.quiz-actions button{font-size:14px}.result-actions button{flex:1}.review summary{font-size:14px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+    @media print{body{background:white}.header,.sidebar,.welcome,.quiz,.result-actions,.footer,.status,.result .fine,dialog{display:none!important}.layout{display:block;margin:0;padding:0;max-width:none}.card{box-shadow:none;border:0;padding:0}.result-head{padding-bottom:12px}.review{break-inside:avoid}.review-content{display:block!important}}
+  </style>
+</head>
+<body>
+  <header class="header"><div class="header-inner"><div class="brand"><span class="logo" aria-hidden="true">{ }</span><div><div class="brand-title">Hello, Algorithm!</div><div class="brand-meta">CCF 四川大学学生会员研修营 · 秋季算法训练营</div></div></div><span class="header-tag">C++ / LEVEL CHECK</span></div></header>
+  <main class="layout">
+    <aside class="sidebar" aria-label="测验说明与题目导航">
+      <div class="eyebrow">CCF SCU / 2026</div><h1>C++ 基础自测</h1><p class="muted">做完这 10 题，看看报哪组。</p>
+      <div id="navigation" class="side-block" hidden><div class="side-title">题目导航 <span id="answeredCount" class="muted"></span></div><div id="questionNav" class="question-nav"></div><p class="side-note">实心表示已答，可随时回头改。</p></div>
+    </aside>
+    <section class="card" aria-label="测验主区域">
+      <div id="welcome" class="welcome">
+        <div class="eyebrow">HELLO, ALGORITHM!</div><h2>零基础组还是进阶组？<br>先做 10 道题。</h2><p class="muted">只考分支、循环、逻辑运算、简单递归和几个常用 STL 的基本用法。不会的题可以直接选“还没学会”。</p>
+        <div class="code-intro" aria-hidden="true">cout &lt;&lt; "Hello, Algorithm!";</div>
+        <div class="info-row"><div><div class="info-value">10 题</div><div class="info-label">全部单选</div></div><div><div class="info-value">10 分</div><div class="info-label">每题最高 1 分</div></div><div><div class="info-value">约 5 分钟</div><div class="info-label">不限时，不拼手速</div></div></div>
+        <p class="score-guide"><strong>每题选一项，选择后自动进入下一题。</strong><br>正确 1 分 · 部分正确 0.5 分 · 错误或不会 0 分</p>
+        <button id="startBtn" class="primary" type="button">开始自测</button><p class="fine">诚实作答更好分组；不会就选“这题还没学会”。提交后看解析。</p>
+      </div>
+      <div id="quiz" class="quiz" hidden>
+        <div class="quiz-top"><strong id="questionNumber"></strong><span id="questionCount"></span></div><div class="progress" role="progressbar" aria-label="已答题目" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><div id="progressFill" class="progress-fill"></div></div>
+        <h2 id="questionTitle" tabindex="-1"></h2><pre id="questionCode" class="question-code" hidden></pre><p id="codeNote" class="code-note" hidden>代码片段已引入所需头文件，并使用 using namespace std;</p>
+        <div id="answers" class="answers" role="radiogroup" aria-labelledby="questionTitle"></div>
+        <div class="quiz-actions"><button id="prevBtn" type="button" class="secondary">上一题</button><button id="nextBtn" type="button" class="primary">下一题</button></div><p class="hint">提交前可以回头改答案。</p><p id="quizStatus" class="status" role="status" aria-live="polite"></p>
+      </div>
+      <div id="result" class="result" hidden tabindex="-1">
+        <div class="result-head"><div><div class="score-big"><span id="totalScore"></span><small> / 10</small></div><div class="result-label">你的本次自测成绩</div></div><span id="groupPill" class="group-pill"></span></div>
+        <h2 id="resultTitle"></h2><p id="recommendation" class="recommendation"></p>
+        <div class="stat-row"><div class="stat"><strong id="fullCount"></strong><span>完整正确 · 1 分</span></div><div class="stat"><strong id="halfCount"></strong><span>部分正确 · 0.5 分</span></div><div class="stat"><strong id="zeroCount"></strong><span>错误 / 不会 · 0 分</span></div></div>
+        <div class="result-actions"><button id="restartBtn" type="button" class="secondary">再测一次</button></div>
+        <h3 class="review-heading">答案和解析</h3><p class="fine" style="margin-bottom:15px!important">点开题目查看。</p><div id="reviewList"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><span>CCF SCU · 2026 秋季算法训练营</span><span>10 题 · 满分 10 分</span></footer>
+  <dialog id="restartDialog" aria-labelledby="restartTitle"><h3 id="restartTitle">重新开始自测？</h3><p>本次答案和结果会清空。</p><div class="dialog-actions"><button id="cancelRestartBtn" class="secondary" type="button">保留结果</button><button id="confirmRestartBtn" class="primary" type="button">重新开始</button></div></dialog>
+  <script>
+    'use strict';
+    // 活动组织者可在这里修改题目、选项分值和分组门槛。
+    const GROUP_RULES = { advancedMin: 9, challengeMin: 6.5 };
+    const QUESTIONS = [
+      {
+        "id": "loop-output",
+        "tag": "分支与循环",
+        "title": "下面的代码输出什么？",
+        "code": "int total = 0;\nfor (int i = 1; i <= 3; i++) {\n  if (i > 1) {\n    total += i;\n  }\n}\ncout << total;",
+        "options": [
+          {
+            "text": "3",
+            "score": 0
+          },
+          {
+            "text": "5",
+            "score": 1
+          },
+          {
+            "text": "6",
+            "score": 0
+          },
+          {
+            "text": "0",
+            "score": 0
+          }
+        ],
+        "explanation": "i 依次取 1、2、3。只有 i > 1 时才累加，所以只加 2 和 3，最终输出 5。",
+        "learn": "分支与循环"
+      },
+      {
+        "id": "logical-and-or",
+        "tag": "逻辑运算",
+        "title": "下面的代码输出什么？",
+        "code": "int a = 3, b = 7;\ncout << (a > 5 && b > 5) << \" \"\n     << (a > 5 || b > 5);",
+        "options": [
+          {
+            "text": "0 0",
+            "score": 0.5
+          },
+          {
+            "text": "1 1",
+            "score": 0.5
+          },
+          {
+            "text": "0 1",
+            "score": 1
+          },
+          {
+            "text": "1 0",
+            "score": 0
+          }
+        ],
+        "explanation": "a > 5 为假，b > 5 为真。&& 要两边都为真，结果为假；|| 只要一边为真，结果就为真。默认输出 bool 时，假是 0，真是 1。输出应为 0 1；只判断对其中一个结果计 0.5 分。",
+        "learn": "&& / ||"
+      },
+      {
+        "id": "logical-not",
+        "tag": "逻辑运算",
+        "title": "下面的代码输出什么？",
+        "code": "bool ok = false;\ncout << !ok << \" \" << !(2 < 3);",
+        "options": [
+          {
+            "text": "0 1",
+            "score": 0
+          },
+          {
+            "text": "1 1",
+            "score": 0.5
+          },
+          {
+            "text": "0 0",
+            "score": 0.5
+          },
+          {
+            "text": "1 0",
+            "score": 1
+          }
+        ],
+        "explanation": "! 表示逻辑取反。ok 是 false，!ok 为 true，输出 1。2 < 3 为 true，取反后是 false，输出 0。因此结果是 1 0；只判断对其中一个结果计 0.5 分。",
+        "learn": "!"
+      },
+      {
+        "id": "recursion",
+        "tag": "递归",
+        "title": "下面的代码输出什么？",
+        "code": "int f(int n) {\n  if (n == 0) return 0;\n  return n + f(n - 1);\n}\n\ncout << f(3);",
+        "options": [
+          {
+            "text": "3",
+            "score": 0
+          },
+          {
+            "text": "6",
+            "score": 1
+          },
+          {
+            "text": "9",
+            "score": 0
+          },
+          {
+            "text": "0",
+            "score": 0
+          }
+        ],
+        "explanation": "f(0) 返回 0。往回算：f(1) = 1，f(2) = 2 + 1 = 3，f(3) = 3 + 3 = 6。这里 f 调用了自身，并在 n == 0 时停止。",
+        "learn": "递归"
+      },
+      {
+        "id": "vector-push",
+        "tag": "vector",
+        "title": "执行后，v 中的元素依次是什么？",
+        "code": "vector<int> v = {1, 2};\nv.push_back(3);",
+        "options": [
+          {
+            "text": "{1, 2, 3}",
+            "score": 1
+          },
+          {
+            "text": "{3, 1, 2}",
+            "score": 0
+          },
+          {
+            "text": "{1, 3, 2}",
+            "score": 0
+          },
+          {
+            "text": "{1, 2}",
+            "score": 0
+          }
+        ],
+        "explanation": "push_back 在末尾添加一个元素，所以 v 变成 {1, 2, 3}。它不会在开头或中间插入元素。",
+        "learn": "vector"
+      },
+      {
+        "id": "vector-index",
+        "tag": "vector",
+        "title": "下面的代码输出什么？",
+        "code": "vector<int> v = {8, 6, 9};\ncout << v[0] << \" \" << v.size();",
+        "options": [
+          {
+            "text": "8 3",
+            "score": 1
+          },
+          {
+            "text": "8 2",
+            "score": 0
+          },
+          {
+            "text": "6 3",
+            "score": 0
+          },
+          {
+            "text": "0 3",
+            "score": 0
+          }
+        ],
+        "explanation": "下标从 0 开始，v[0] 是 8。size() 是元素个数，这里是 3，不是最后一个下标 2。",
+        "learn": "vector"
+      },
+      {
+        "id": "string",
+        "tag": "string",
+        "title": "下面的代码输出什么？",
+        "code": "string s = \"abc\";\ns += \"d\";\ncout << s[1] << \" \" << s.size();",
+        "options": [
+          {
+            "text": "b 4",
+            "score": 1
+          },
+          {
+            "text": "a 4",
+            "score": 0
+          },
+          {
+            "text": "b 3",
+            "score": 0
+          },
+          {
+            "text": "abcd 4",
+            "score": 0
+          }
+        ],
+        "explanation": "追加后 s 是 \"abcd\"。下标从 0 开始，所以 s[1] 是 b；size() 返回字符个数 4。",
+        "learn": "string"
+      },
+      {
+        "id": "stack",
+        "tag": "stack",
+        "title": "下面的代码输出什么？",
+        "code": "stack<int> st;\nst.push(10);\nst.push(20);\nst.pop();\ncout << st.top();",
+        "options": [
+          {
+            "text": "20",
+            "score": 0
+          },
+          {
+            "text": "10",
+            "score": 1
+          },
+          {
+            "text": "30",
+            "score": 0
+          },
+          {
+            "text": "0",
+            "score": 0
+          }
+        ],
+        "explanation": "stack 后进先出。20 后入栈，先被 pop() 删除，剩下的栈顶是 10。top() 读取栈顶，不删除元素。",
+        "learn": "stack"
+      },
+      {
+        "id": "queue",
+        "tag": "queue",
+        "title": "把上一题的 stack 换成 queue，输出什么？",
+        "code": "queue<int> q;\nq.push(10);\nq.push(20);\nq.pop();\ncout << q.front();",
+        "options": [
+          {
+            "text": "10",
+            "score": 0
+          },
+          {
+            "text": "20",
+            "score": 1
+          },
+          {
+            "text": "30",
+            "score": 0
+          },
+          {
+            "text": "0",
+            "score": 0
+          }
+        ],
+        "explanation": "queue 先进先出。10 先入队，先被 pop() 删除，剩下的队头是 20。front() 读取队头，不删除元素。",
+        "learn": "queue"
+      },
+      {
+        "id": "string-input",
+        "tag": "string",
+        "title": "输入一行 hello world 后，下面的代码输出什么？",
+        "code": "string s;\ngetline(cin, s);\ncout << s.size();",
+        "options": [
+          {
+            "text": "5",
+            "score": 0
+          },
+          {
+            "text": "10",
+            "score": 0
+          },
+          {
+            "text": "11",
+            "score": 1
+          },
+          {
+            "text": "12",
+            "score": 0
+          }
+        ],
+        "explanation": "getline 读取一整行，保留中间的空格。hello 和 world 各有 5 个字符，加上 1 个空格，共 11 个字符。换行符不存入 s。若改用 cin >> s，这里只会读到 hello，长度为 5。",
+        "learn": "string"
+      }
+    ];
+    const $ = id => document.getElementById(id);
+    const escapeHtml = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    let answers = Array(QUESTIONS.length).fill(null), current = 0, phase = 'welcome';
+    const selectedScore = (question, index) => index === 4 || index === null ? 0 : question.options[index].score;
+    const getGroup = score => score >= GROUP_RULES.advancedMin ? {key:'advanced',label:'推荐进阶组',title:'进阶组见！',message:'您的基础没有任何问题，请您选择进阶组大杀四方吧！'} : score >= GROUP_RULES.challengeMin ? {key:'challenge',label:'可以挑战进阶组',title:'补一补，也能冲进阶组。',message:'您的基础有些漏洞，但是可以挑战进阶组！'} : {key:'beginner',label:'推荐零基础组',title:'建议先报零基础组。',message:'我们推荐您报名 0 基础组。'};
+    function scoreAnswers(values) {
+      if (!Array.isArray(values) || values.length !== QUESTIONS.length || values.some(v => !Number.isInteger(v) || v < 0 || v > 4)) throw new Error('请完成所有题目，或选择“这题还没学会”。');
+      const scores = QUESTIONS.map((q, i) => selectedScore(q, values[i]));
+      const total = scores.reduce((sum, n) => sum + n, 0);
+      return {total, scores, group:getGroup(total), full:scores.filter(n => n === 1).length, half:scores.filter(n => n === .5).length, zero:scores.filter(n => n === 0).length};
+    }
+    function showPhase(next) {phase = next; ['welcome','quiz','result'].forEach(id => $(id).hidden = id !== next); $('navigation').hidden = next !== 'quiz';}
+    function startQuiz() { answers = Array(QUESTIONS.length).fill(null); current = 0; showPhase('quiz'); renderQuestion(true); return {phase,question:1,total:QUESTIONS.length}; }
+    function renderNavigation() {
+      const done = answers.filter(v => v !== null).length;
+      $('answeredCount').textContent = done + '/10';
+      $('questionCount').textContent = '已答 ' + done + ' / 10';
+      $('progressFill').style.width = done / QUESTIONS.length * 100 + '%';
+      document.querySelector('.progress').setAttribute('aria-valuenow',done);
+      $('questionNav').innerHTML = QUESTIONS.map((q,i) => '<button type="button" class="nav-number '+(answers[i] !== null ? 'done ' : '')+(i === current ? 'current' : '')+'" data-question="'+i+'" aria-label="第 '+(i+1)+' 题，'+(answers[i] !== null ? '已答' : '未答')+'" '+(i === current ? 'aria-current="step"' : '')+'>'+(i+1)+'</button>').join('');
+    }
+    function renderQuestion(focus) {
+      const q = QUESTIONS[current];
+      $('questionNumber').textContent = 'Q ' + String(current+1).padStart(2,'0') + ' / 10';
+      $('questionTitle').textContent = q.title;
+      $('questionCode').hidden = !q.code; $('questionCode').textContent = q.code || ''; $('codeNote').hidden = !q.code;
+      const options = [...q.options,{text:'这题还没学会，先记下这个坑',score:0}];
+      $('answers').innerHTML = options.map((option,i) => '<button type="button" role="radio" aria-checked="'+(answers[current] === i)+'" tabindex="'+(answers[current] === i || (answers[current] === null && i === 0) ? '0' : '-1')+'" class="answer '+(i === 4 ? 'unknown' : '')+'" data-choice="'+i+'"><span class="answer-letter" aria-hidden="true">'+(i === 4 ? '?' : 'ABCD'[i])+'</span><span>'+escapeHtml(option.text)+'</span></button>').join('');
+      $('prevBtn').disabled = current === 0; $('nextBtn').textContent = current === QUESTIONS.length - 1 ? '提交并查看分组' : '下一题'; $('quizStatus').textContent = ''; renderNavigation();
+      if (focus) $('questionTitle').focus({preventScroll:true});
+    }
+    function selectAnswer(index, focus) {
+      if (phase !== 'quiz' || !Number.isInteger(index) || index < 0 || index > 4) throw new Error('请先开始测验，并选择有效选项。');
+      answers[current] = index;
+      const buttons = Array.from($('answers').children);
+      buttons.forEach((button,i) => {button.setAttribute('aria-checked',i === index); button.tabIndex = i === index ? 0 : -1;});
+      $('quizStatus').textContent = ''; renderNavigation(); if (focus) buttons[index].focus();
+      return {question:current+1,selected:index === 4 ? 'unknown' : 'ABCD'[index],answered:answers.filter(v => v !== null).length};
+    }
+    function navigateQuestion(index) {if(phase !== 'quiz' || !Number.isInteger(index) || index < 0 || index >= QUESTIONS.length) throw new Error('无效题号。'); current = index; renderQuestion(true); return {question:current+1,title:QUESTIONS[current].title};}
+    function submitQuiz() {
+      if(phase !== 'quiz') throw new Error('请先完成测验。');
+      const missing = answers.findIndex(v => v === null);
+      if (missing !== -1) {navigateQuestion(missing); $('quizStatus').textContent = '还有题目没答。不会的话，可以选择“这题还没学会”。'; return {submitted:false,firstUnanswered:missing+1};}
+      const result = scoreAnswers(answers); showPhase('result');
+      $('totalScore').textContent = result.total; $('groupPill').textContent = result.group.label; $('resultTitle').textContent = result.group.title; $('recommendation').textContent = result.group.message;
+      $('fullCount').textContent = result.full; $('halfCount').textContent = result.half; $('zeroCount').textContent = result.zero;
+      $('reviewList').innerHTML = QUESTIONS.map((q,i) => {
+        const score = result.scores[i], selected = answers[i] === 4 ? '这题还没学会' : 'ABCD'[answers[i]]+' · '+q.options[answers[i]].text, correct = q.options.findIndex(o => o.score === 1);
+        return '<details class="review"><summary><span class="review-title">'+(i+1)+'. '+escapeHtml(q.title)+'</span><span class="review-score '+(score === 1 ? 'full' : score === .5 ? 'half' : '')+'">'+score+' / 1</span></summary><div class="review-content">'+(q.code ? '<pre class="question-code">'+escapeHtml(q.code)+'</pre>' : '')+'<p><strong>你的选择：</strong>'+escapeHtml(selected)+'</p><p><strong>完整答案：</strong>'+'ABCD'[correct]+' · '+escapeHtml(q.options[correct].text)+'</p><p>'+escapeHtml(q.explanation)+'</p></div></details>';
+      }).join('');
+      $('result').focus({preventScroll:true}); window.scrollTo({top:0,behavior:'auto'}); return {submitted:true,score:result.total,group:result.group.label};
+    }
+    $('startBtn').addEventListener('click',startQuiz);
+    $('answers').addEventListener('click',e => {
+      const button = e.target.closest('[data-choice]');
+      if (!button) return;
+      selectAnswer(Number(button.dataset.choice),false);
+      if (current < QUESTIONS.length - 1) {
+        navigateQuestion(current + 1);
+        $('quiz').scrollIntoView({block:'start',behavior:'auto'});
+      } else {
+        $('quizStatus').textContent = answers.every(value => value !== null) ? '已答完全部题目，可以提交查看分组。' : '还有题目未答，可以通过题目导航返回。';
+      }
+    });
+    $('answers').addEventListener('keydown',e => {
+      if (!['ArrowDown','ArrowUp','ArrowLeft','ArrowRight','Home','End'].includes(e.key)) return;
+      e.preventDefault(); const index = Number(e.target.closest('[data-choice]')?.dataset.choice || 0);
+      selectAnswer(e.key === 'Home' ? 0 : e.key === 'End' ? 4 : (index + (e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : -1) + 5) % 5,true);
+    });
+    $('questionNav').addEventListener('click',e => {const button = e.target.closest('[data-question]');if(button) navigateQuestion(Number(button.dataset.question));});
+    $('prevBtn').addEventListener('click',() => {if(current > 0) navigateQuestion(current-1);});
+    $('nextBtn').addEventListener('click',() => {if(current === QUESTIONS.length-1) submitQuiz(); else navigateQuestion(current+1);});
+    $('restartBtn').addEventListener('click',() => $('restartDialog').showModal());
+    $('cancelRestartBtn').addEventListener('click',() => $('restartDialog').close());
+    $('confirmRestartBtn').addEventListener('click',() => {$('restartDialog').close();startQuiz();window.scrollTo({top:0,behavior:'auto'});});
+    // 支持 WebMCP 的浏览器可通过与页面相同的操作读取题目、作答和提交。
+    if(document.modelContext?.registerTool) {
+      const tools = [
+        {name:'start_cpp_quiz',description:'开始 C++ 自测；会清空已有答案。',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:false},execute:() => startQuiz()},
+        {name:'read_cpp_quiz_question',description:'读取当前题目和已选答案；不提供答案分值。',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true},execute:() => {if(phase !== 'quiz') throw new Error('请先开始测验。');const q = QUESTIONS[current];return {question:current+1,title:q.title,code:q.code || null,options:[...q.options.map((o,i) => ({choice:i,text:o.text})),{choice:4,text:'这题还没学会'}],selected:answers[current]};}},
+        {name:'answer_cpp_quiz_question',description:'选择当前题目答案；choice 为 0–3 对应 A–D，4 表示不会。',inputSchema:{type:'object',properties:{choice:{type:'integer',minimum:0,maximum:4}},required:['choice'],additionalProperties:false},annotations:{readOnlyHint:false},execute:input => selectAnswer(input.choice,false)},
+        {name:'navigate_cpp_quiz_question',description:'前往指定题目，question 为 1–10。',inputSchema:{type:'object',properties:{question:{type:'integer',minimum:1,maximum:10}},required:['question'],additionalProperties:false},annotations:{readOnlyHint:false},execute:input => navigateQuestion(input.question-1)},
+        {name:'submit_cpp_quiz',description:'提交全部答案并显示分组结果；有未答题时返回第一道未答题。',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:false},execute:() => submitQuiz()}
+      ];
+      for(const tool of tools) {try {Promise.resolve(document.modelContext.registerTool(tool)).catch(() => {});} catch {}}
+    }
+  </script>
+</body>
+</html>
